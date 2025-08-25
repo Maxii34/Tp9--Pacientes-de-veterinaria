@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
 import Form from "react-bootstrap/Form";
 import Swal from "sweetalert2";
+import { useState } from "react"; 
+import CardContenedor from "./CardContenedor";
+
 
 const ImputFormulario = () => {
   const {
@@ -10,12 +13,16 @@ const ImputFormulario = () => {
     formState: { errors },
   } = useForm();
 
+  const [citas, setCitas] = useState([]); 
+
   const onSubValida = (data) => {
     Swal.fire(
       "Datos enviados",
       "Los datos fueron enviados correctamente.",
       "success"
     );
+    setCitas([...citas, data]);
+    console.log(data);
     reset();
   };
 
@@ -150,12 +157,7 @@ const ImputFormulario = () => {
 
         <div className="col-12 col-lg-6 mb-3">
           <div className="shadow p-3">
-            <h4 className="fs-4 text-center mb-3">Administrador de citas </h4>
-            <div>
-              <p className="text-center mt-3 text-muted">
-                No hay citas, comienza creando una
-              </p>
-            </div>
+                <CardContenedor citas={citas} />
           </div>
         </div>
       </div>

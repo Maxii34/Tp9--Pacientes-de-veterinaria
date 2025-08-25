@@ -11,3 +11,9 @@ main {
     max-width: 600px;
     margin: 0 auto;
 }
+
+.card-scroll {
+  max-height: 544px;      
+  overflow-y: auto;       
+  padding-right: 10px;    
+}
