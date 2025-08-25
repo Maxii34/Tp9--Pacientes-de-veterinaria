@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import Form from "react-bootstrap/Form";
+import Swal from "sweetalert2";
 
 const ImputFormulario = () => {
   const {
@@ -7,6 +9,15 @@ const ImputFormulario = () => {
     reset,
     formState: { errors },
   } = useForm();
+
+  const onSubValida = (data) => {
+    Swal.fire(
+      "Datos enviados",
+      "Los datos fueron enviados correctamente.",
+      "success"
+    );
+    reset();
+  };
 
   return (
     <section className="container mt-3 w-auto">
@@ -23,7 +34,11 @@ const ImputFormulario = () => {
                 </h2>
               </div>
               <div className="card-body">
-                <form>
+                <form
+                  onSubmit={handleSubmit(onSubValida, (errors) => {
+                    Swal.fire("Error", "Completa todos los datos.", "error");
+                  })}
+                >
                   <div className="mb-3">
                     <label className="form-label">Nombre del dueño:</label>
                     <input
@@ -54,7 +69,7 @@ const ImputFormulario = () => {
                       className="form-control"
                       placeholder="nombre de mascota"
                       {...register("nombreMascota", {
-                        required: "El nombre es obligatorio",
+                        required: "El nombre de la mascota es obligatorio",
                         minLength: {
                           value: 3,
                           message: "El mínimo de caracteres es de 3",
@@ -77,7 +92,7 @@ const ImputFormulario = () => {
                         type="date"
                         className="form-control"
                         {...register("fecha", {
-                          required: "El campo es obligatorio",
+                          required: "La fecha es obligatorio",
                         })}
                       />
                       <Form.Text className="text-danger">
@@ -90,7 +105,7 @@ const ImputFormulario = () => {
                         type="time"
                         className="form-control"
                         {...register("hora", {
-                          required: "El campo es obligatorio",
+                          required: "La hora es obligatorio",
                         })}
                       />
                       <Form.Text className="text-danger">
@@ -106,7 +121,7 @@ const ImputFormulario = () => {
                       rows="3"
                       placeholder="describir los síntomas de la mascota."
                       {...register("sintomas", {
-                        required: "El campo es obligatorio",
+                        required: "Los sintomas son obligatorio",
                         minLength: {
                           value: 10,
                           message: "El mínimo de caracteres es de 10",
