@@ -1,0 +1,13 @@
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    flex: 1;
+}
+
+.responcive {
+    max-width: 600px;
+    margin: 0 auto;
+}
