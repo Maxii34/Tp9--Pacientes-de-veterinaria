@@ -2,9 +2,9 @@ import CardCitas from "./CardCitas";
 
 const CardContenedor = ({ citas }) => {
   return (
-    <section className="mt-3">
-      <div className="card-scroll">
+    <section>
         <h4 className="fs-4 text-center mb-3">Administrador de citas</h4>
+      <div className="card-scroll">
 
         {citas.length === 0 ? (
           <p className="text-center text-muted">

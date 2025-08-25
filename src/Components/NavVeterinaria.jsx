@@ -7,7 +7,7 @@ const NavVeterinaria = () => {
   return (
     <Navbar expand="lg" className="bg-dark shadow" >
       <Container>
-        <Navbar.Brand href="#home" className=" text-light">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="#home" className=" text-light">Pacientes de veterinaria</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">

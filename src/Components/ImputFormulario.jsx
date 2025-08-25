@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Swal from "sweetalert2";
 import { useState } from "react"; 
 import CardContenedor from "./CardContenedor";
-
+import { Button } from "react-bootstrap";
 
 const ImputFormulario = () => {
   const {
@@ -13,7 +13,8 @@ const ImputFormulario = () => {
     formState: { errors },
   } = useForm();
 
-  const [citas, setCitas] = useState([]); 
+  const citasLocalStorage = JSON.parse(localStorage.getItem("citas")) || [];
+  const [citas, setCitas] = useState([citasLocalStorage]); 
 
   const onSubValida = (data) => {
     Swal.fire(
@@ -25,6 +26,8 @@ const ImputFormulario = () => {
     console.log(data);
     reset();
   };
+
+
 
   return (
     <section className="container mt-3 w-auto">
@@ -51,7 +54,7 @@ const ImputFormulario = () => {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="nombre de dueño"
+                      placeholder="Nombre completo"
                       {...register("nombreDueño", {
                         required: "El nombre es obligatorio",
                         minLength: {
@@ -74,7 +77,7 @@ const ImputFormulario = () => {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="nombre de mascota"
+                      placeholder="Nombre de la mascota"
                       {...register("nombreMascota", {
                         required: "El nombre de la mascota es obligatorio",
                         minLength: {
@@ -126,11 +129,11 @@ const ImputFormulario = () => {
                     <textarea
                       className="form-control"
                       rows="3"
-                      placeholder="describir los síntomas de la mascota."
+                      placeholder="Describir los síntomas de la mascota."
                       {...register("sintomas", {
                         required: "Los sintomas son obligatorio",
                         minLength: {
-                          value: 10,
+                          value: 5,
                           message: "El mínimo de caracteres es de 10",
                         },
                         maxLength: {
@@ -145,9 +148,9 @@ const ImputFormulario = () => {
                   </div>
 
                   <div className="text-center">
-                    <button type="submit" className="btn btn-primary">
+                    <Button type="submit" Varian="primary" className="w-100 shadow ">
                       Agregar
-                    </button>
+                    </Button>
                   </div>
                 </form>
               </div>
@@ -156,7 +159,7 @@ const ImputFormulario = () => {
         </div>
 
         <div className="col-12 col-lg-6 mb-3">
-          <div className="shadow p-3">
+          <div className="card shadow p-3">
                 <CardContenedor citas={citas} />
           </div>
         </div>
