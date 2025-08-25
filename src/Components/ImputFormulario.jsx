@@ -1,4 +1,13 @@
+import { useForm } from "react-hook-form";
+
 const ImputFormulario = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
   return (
     <section className="container mt-3 w-auto">
       <div className="row">
@@ -21,7 +30,21 @@ const ImputFormulario = () => {
                       type="text"
                       className="form-control"
                       placeholder="nombre de dueño"
+                      {...register("nombreDueño", {
+                        required: "El nombre es obligatorio",
+                        minLength: {
+                          value: 3,
+                          message: "El mínimo de caracteres es de 3",
+                        },
+                        maxLength: {
+                          value: 20,
+                          message: "El máximo de caracteres es de 20",
+                        },
+                      })}
                     />
+                    <Form.Text className="text-danger">
+                      {errors.nombreDueño?.message}
+                    </Form.Text>
                   </div>
 
                   <div className="mb-3">
@@ -30,17 +53,49 @@ const ImputFormulario = () => {
                       type="text"
                       className="form-control"
                       placeholder="nombre de mascota"
+                      {...register("nombreMascota", {
+                        required: "El nombre es obligatorio",
+                        minLength: {
+                          value: 3,
+                          message: "El mínimo de caracteres es de 3",
+                        },
+                        maxLength: {
+                          value: 20,
+                          message: "El máximo de caracteres es de 20",
+                        },
+                      })}
                     />
+                    <Form.Text className="text-danger">
+                      {errors.nombreMascota?.message}
+                    </Form.Text>
                   </div>
 
                   <div className="row mb-3">
                     <div className="col-6">
                       <label className="form-label">Fecha:</label>
-                      <input type="date" className="form-control" />
+                      <input
+                        type="date"
+                        className="form-control"
+                        {...register("fecha", {
+                          required: "El campo es obligatorio",
+                        })}
+                      />
+                      <Form.Text className="text-danger">
+                        {errors.fecha?.message}
+                      </Form.Text>
                     </div>
                     <div className="col-6">
                       <label className="form-label">Hora:</label>
-                      <input type="time" className="form-control" />
+                      <input
+                        type="time"
+                        className="form-control"
+                        {...register("hora", {
+                          required: "El campo es obligatorio",
+                        })}
+                      />
+                      <Form.Text className="text-danger">
+                        {errors.hora?.message}
+                      </Form.Text>
                     </div>
                   </div>
 
@@ -50,12 +105,26 @@ const ImputFormulario = () => {
                       className="form-control"
                       rows="3"
                       placeholder="describir los síntomas de la mascota."
+                      {...register("sintomas", {
+                        required: "El campo es obligatorio",
+                        minLength: {
+                          value: 10,
+                          message: "El mínimo de caracteres es de 10",
+                        },
+                        maxLength: {
+                          value: 200,
+                          message: "El máximo de caracteres es de 200",
+                        },
+                      })}
                     ></textarea>
+                    <Form.Text className="text-danger">
+                      {errors.sintomas?.message}
+                    </Form.Text>
                   </div>
 
                   <div className="text-center">
                     <button type="submit" className="btn btn-primary">
-                      Agregar nueva cita
+                      Agregar
                     </button>
                   </div>
                 </form>
