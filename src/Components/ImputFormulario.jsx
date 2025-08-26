@@ -6,7 +6,7 @@ import CardContenedor from "./CardContenedor";
 import { Button } from "react-bootstrap";
 
 const ImputFormulario = () => {
-    const {
+  const {
     register,
     handleSubmit,
     reset,
@@ -14,16 +14,21 @@ const ImputFormulario = () => {
   } = useForm();
 
   const citasLocalStorage = JSON.parse(localStorage.getItem("citas")) || [];
-  const [citas, setCitas] = useState(citasLocalStorage); 
+  const [citas, setCitas] = useState(citasLocalStorage);
 
   const guardarEnLocalStorage = (citasActualizadas) => {
     localStorage.setItem("citas", JSON.stringify(citasActualizadas));
   };
 
   const onSubValida = (data) => {
-    const nuevasCitas = [...citas, data];
+    const nuevaCita = {
+      ...data,
+      id: Date.now(), // ID único
+    };
+
+    const nuevasCitas = [...citas, nuevaCita];
     setCitas(nuevasCitas);
-    guardarEnLocalStorage(nuevasCitas); 
+    guardarEnLocalStorage(nuevasCitas);
 
     Swal.fire(
       "Datos enviados",
@@ -34,14 +39,12 @@ const ImputFormulario = () => {
     reset();
   };
 
-  const borrarCita = (nombreMascota) => {
-    const citasFiltradas = citas.filter(
-      (cita) => cita.nombreMascota !== nombreMascota
-    );
+  const borrarCita = (id) => {
+    const citasFiltradas = citas.filter((cita) => cita.id !== id);
     setCitas(citasFiltradas);
-    guardarEnLocalStorage(citasFiltradas); 
+    guardarEnLocalStorage(citasFiltradas);
   };
-  
+
   return (
     <section className="container mt-3 w-auto">
       <div className="row">
@@ -135,6 +138,25 @@ const ImputFormulario = () => {
                         {errors.hora?.message}
                       </Form.Text>
                     </div>
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="form-label">Teléfono:</label>
+                    <input
+                      type="tel"
+                      className="form-control"
+                      placeholder="11-2345-6789"
+                      {...register("telefono", {
+                        required: "El teléfono es obligatorio",
+                        pattern: {
+                          value: /^\d{2}-\d{4}-\d{4}$/,
+                          message: "Formato: 11-2345-6789",
+                        },
+                      })}
+                    />
+                    <Form.Text className="text-danger">
+                      {errors.telefono?.message}
+                    </Form.Text>
                   </div>
 
                   <div className="mb-3">
