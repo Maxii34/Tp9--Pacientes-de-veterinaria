@@ -30,10 +30,10 @@ const CardCitas = ({
       </div>
       <div className="card-footer d-flex justify-content-end gap-2">
         <button
-          className="btn btn-danger btn-sm"
+          className="btn btn-danger btn-sm shadow"
           onClick={() => borrarCita(nombreMascota)} 
         >
-          Eliminar cita
+          Eliminar
         </button>
       </div>
     </div>

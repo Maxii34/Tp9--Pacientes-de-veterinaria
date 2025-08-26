@@ -1,19 +1,33 @@
 #root {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 main {
-    flex: 1;
+  flex: 1;
 }
 
 .responcive {
-    max-width: 600px;
-    margin: 0 auto;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .card-scroll {
-  max-height: 544px;      
-  overflow-y: auto;       
-  padding-right: 10px;    
+  max-height: 544px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.gradien-css {
+  background: #141e30; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #243b55,
+    #141e30
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #243b55,
+    #141e30
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }

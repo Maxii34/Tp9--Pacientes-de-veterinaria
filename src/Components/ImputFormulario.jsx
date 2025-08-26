@@ -46,7 +46,7 @@ const ImputFormulario = () => {
   };
 
   return (
-    <section className="container mt-3 w-auto">
+    <section className="container mt-3 w-auto my-5">
       <div className="row">
         <div className="col-12 col-lg-6 mb-3">
           <div className="card shadow responcive">
@@ -149,7 +149,7 @@ const ImputFormulario = () => {
                       {...register("telefono", {
                         required: "El teléfono es obligatorio",
                         pattern: {
-                          value: /^\d{2}-\d{4}-\d{4}$/,
+                          value: /^[+]?[\d\s\-\(\)]{8,}$/,
                           message: "Formato: 11-2345-6789",
                         },
                       })}
@@ -198,7 +198,7 @@ const ImputFormulario = () => {
         </div>
 
         <div className="col-12 col-lg-6 mb-3">
-          <div className="card shadow p-3">
+          <div className="card shadow p-3 responcive">
             <CardContenedor citas={citas} borrarCita={borrarCita} />
           </div>
         </div>
