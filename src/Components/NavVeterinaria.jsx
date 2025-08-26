@@ -11,7 +11,7 @@ const NavVeterinaria = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Button href="#Home" variant="dark" ><i className="bi bi-github"></i> Repocitorio</Button>
+            <Button href="https://github.com/Maxii34/Tp9--Pacientes-de-veterinaria/tree/dev" target="_blank" variant="dark" ><i className="bi bi-github"></i> Repocitorio</Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
