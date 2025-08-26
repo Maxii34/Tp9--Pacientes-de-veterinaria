@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import Form from "react-bootstrap/Form";
 import Swal from "sweetalert2";
-import { useState } from "react"; 
+import { useState } from "react";
 import CardContenedor from "./CardContenedor";
 import { Button } from "react-bootstrap";
 
 const ImputFormulario = () => {
-  const {
+    const {
     register,
     handleSubmit,
     reset,
@@ -14,21 +14,34 @@ const ImputFormulario = () => {
   } = useForm();
 
   const citasLocalStorage = JSON.parse(localStorage.getItem("citas")) || [];
-  const [citas, setCitas] = useState([citasLocalStorage]); 
+  const [citas, setCitas] = useState(citasLocalStorage); 
+
+  const guardarEnLocalStorage = (citasActualizadas) => {
+    localStorage.setItem("citas", JSON.stringify(citasActualizadas));
+  };
 
   const onSubValida = (data) => {
+    const nuevasCitas = [...citas, data];
+    setCitas(nuevasCitas);
+    guardarEnLocalStorage(nuevasCitas); 
+
     Swal.fire(
       "Datos enviados",
       "Los datos fueron enviados correctamente.",
       "success"
     );
-    setCitas([...citas, data]);
     console.log(data);
     reset();
   };
 
-
-
+  const borrarCita = (nombreMascota) => {
+    const citasFiltradas = citas.filter(
+      (cita) => cita.nombreMascota !== nombreMascota
+    );
+    setCitas(citasFiltradas);
+    guardarEnLocalStorage(citasFiltradas); 
+  };
+  
   return (
     <section className="container mt-3 w-auto">
       <div className="row">
@@ -148,7 +161,11 @@ const ImputFormulario = () => {
                   </div>
 
                   <div className="text-center">
-                    <Button type="submit" Varian="primary" className="w-100 shadow ">
+                    <Button
+                      type="submit"
+                      Varian="primary"
+                      className="w-100 shadow "
+                    >
                       Agregar
                     </Button>
                   </div>
@@ -160,7 +177,7 @@ const ImputFormulario = () => {
 
         <div className="col-12 col-lg-6 mb-3">
           <div className="card shadow p-3">
-                <CardContenedor citas={citas} />
+            <CardContenedor citas={citas} borrarCita={borrarCita} />
           </div>
         </div>
       </div>

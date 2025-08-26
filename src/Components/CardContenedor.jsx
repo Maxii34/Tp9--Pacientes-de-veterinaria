@@ -1,6 +1,6 @@
 import CardCitas from "./CardCitas";
 
-const CardContenedor = ({ citas }) => {
+const CardContenedor = ({ citas, borrarCita }) => {
   return (
     <section>
         <h4 className="fs-4 text-center mb-3">Administrador de citas</h4>
@@ -19,6 +19,7 @@ const CardContenedor = ({ citas }) => {
               fecha={cita.fecha}
               hora={cita.hora}
               sintomas={cita.sintomas}
+              borrarCita={borrarCita}
             />
           ))
         )}
